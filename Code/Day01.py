@@ -5,7 +5,7 @@ def part1():
     rightNumbers = []
     difference = 0
 
-    with open('Data/Day1Data.txt', 'r') as file:
+    with open('Data/Day01Data.txt', 'r') as file:
         for line in file:
             numbers = line.strip().split('   ')
             leftNumbers.append(int(numbers[0]))
@@ -24,7 +24,7 @@ def part2():
     similarity = 0
     numberAmounts = dict()
 
-    with open('Data/Day1Data.txt', 'r') as file:
+    with open('Data/Day01Data.txt', 'r') as file:
         for line in file:
             numbers = line.strip().split('   ')
             leftNumbers.append(int(numbers[0]))

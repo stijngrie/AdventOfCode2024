@@ -1,5 +1,5 @@
 def part1():
-    with open('Data/Day3Data.txt', 'r') as file:
+    with open('Data/Day03Data.txt', 'r') as file:
         input = ''.join(file)
         # Get all the instances where the mul( is typed correctly
         instances = input.split('mul(')
@@ -15,7 +15,7 @@ def part1():
         return str(answer)
     
 def part2():
-    with open('Data/Day3Data.txt', 'r') as file:
+    with open('Data/Day03Data.txt', 'r') as file:
         input = ''.join(file)
         # Get only the substrings from after a do() statement 
         tempSplits = input.split('do()')

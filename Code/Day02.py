@@ -12,7 +12,7 @@ correctReports1 = 0
 correctReports2 = 0
 numbersList = []
 
-with open('Data/Day2Data.txt', 'r') as file:
+with open('Data/Day02Data.txt', 'r') as file:
     for line in file:
          # Split the lines to get all the number in a list and then parse all to int
         numbersList.append(list(map(int, line.strip().split(' '))))
