@@ -47,36 +47,39 @@ def part2():
     # Loop over all spots and pretend there is an object there to see if the guard loops
     for row in range(len(grid)):
         for column in range(len(grid[0])):
-            print(row * len(grid) + column, '/', len(grid) * len(grid[0]))
             answer += 1 if findLoop(row, column) else 0
     return str(answer)
 
 def findLoop(objRow, objCol):
-    # Create array of all unique positions the guard has visited
-    uniquePositions = []
+    r = startGuardPos['r']
+    c = startGuardPos['c']
     currentDirection = directions[0]
-    # Find the position of the guard
-    guardPos = startGuardPos
+    dr = currentDirection['r']
+    dc = currentDirection['c']
+    # Create array of all unique positions the guard has visited
+    uniquePositions = set()
     # Continue stepping until the guard is out of the area
     while True:
+        newPosDir = (r, c, dr, dc)
         # Put the current position in the array if it wasn't already
-        if guardPos not in uniquePositions:
-            uniquePositions.append(guardPos)
-        else:
+        if newPosDir in uniquePositions:
             return True
-        # Get the next position
-        nextPos = {'r': guardPos['r'] + currentDirection['r'], 'c': guardPos['c'] + currentDirection['c'], 'dr': currentDirection['r'], 'dc': currentDirection['c']}
+
+        uniquePositions.add(newPosDir)
+
         # Check if the next position is out of bounds
-        if nextPos['r'] >= len(grid) or nextPos['r'] < 0 or nextPos['c'] < 0 or nextPos['c'] >= len(grid[0]):
+        if  r + dr >= len(grid) or r + dr < 0 or c + dc < 0 or c + dc >= len(grid[0]):
             return False
 
         # Check if the nextpos is an object, if true, rotate
-        if grid[nextPos['r']][nextPos['c']] == '#' or (nextPos['r'] == objRow and nextPos['c'] == objCol):
+        if grid[r + dr][c + dc] == '#' or (r + dr == objRow and c + dc == objCol):
             nextIndex = (directions.index(currentDirection) + 1) % len(directions)
             currentDirection = directions[nextIndex]
-            guardPos = {'r': guardPos['r'], 'c': guardPos['c'], 'dr': currentDirection['r'], 'dc': currentDirection['c']}
+            dr = currentDirection['r']
+            dc = currentDirection['c']
         else:
-            guardPos = nextPos
+            r += dr
+            c += dc
                   
     
 print("Part 1 answer: " + part1())
